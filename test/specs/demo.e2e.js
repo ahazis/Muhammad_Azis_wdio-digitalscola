@@ -32,8 +32,12 @@ describe('Saucedemo test', () => {
         await $('//button[@name="add-to-cart-sauce-labs-bike-light"]').click() // add product to cart Sauce Labs Bike Light
         await browser.pause(3000)
 
+        // action klik keranjang untuk melihat produk yang sudah di tambahkan
+        await $('//a[@class="shopping_cart_link" and @data-test="shopping-cart-link"]').click() // menambahkan "and" pada xpath
+        await browser.pause(3000)
+
         // assertions
-        const jumlahBarang = await $('//span[@class="shopping_cart_badge"]')
+        const jumlahBarang = await $('//span[@class="shopping_cart_badge" and @data-test="shopping-cart-badge"]')
         await expect(jumlahBarang).toBeDisplayed()
         await expect(jumlahBarang).toHaveText('2') // memastikan ada 2 barang di keranjang
 
